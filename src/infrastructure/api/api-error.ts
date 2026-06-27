@@ -3,9 +3,10 @@ export interface ApiErrorPayload {
   error?: string;
   detail?: string;
   title?: string;
+  errorMessage?: string;
   errors?: Record<string, string[]>;
+  validationErrors?: Record<string, string[]>;
 }
-
 export class ApiError extends Error {
   readonly status?: number;
   readonly code: "ABORTED" | "NETWORK" | "HTTP" | "INVALID_RESPONSE";
@@ -66,14 +67,18 @@ export async function readErrorMessage(response: Response): Promise<string> {
     }
 
     const payload = (await jsonResponse.json()) as ApiErrorPayload;
-    const validationMessages = payload.errors
-      ? Object.values(payload.errors)
-          .flat()
-          .filter(Boolean)
+    const validationMap =
+      payload.validationErrors ?? payload.errors;
+
+    const validationMessages = validationMap
+      ? Object.values(validationMap)
+        .flat()
+        .filter(Boolean)
       : [];
 
     return (
       payload.message ??
+      payload.errorMessage ??
       payload.error ??
       payload.detail ??
       payload.title ??

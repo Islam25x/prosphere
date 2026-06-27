@@ -12,3 +12,16 @@ export type AuthenticationTokenDto = {
   token: string;
   refreshToken: string;
 };
+export type registerPayload = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  gender: 'Male' | 'Female';
+  role: 'Creator' | 'Investor' | 'Admin';
+};
+export type confirmEmailPayload = {
+  userId: string;
+  token: string;
+};

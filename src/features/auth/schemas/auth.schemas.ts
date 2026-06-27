@@ -19,17 +19,36 @@ export const loginSchema = z.object({
   rememberMe: z.boolean(),
 });
 
-export const registerSchema = z
-  .object({
-    name: z.string().min(1, "Name is required"),
-    email: emailSchema,
-    password: z.string().min(8, "Password must be at least 8 characters"),
-    confirmPassword: z.string().min(1, "Confirm password is required"),
-  })
-  .refine((values) => values.password === values.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  });
+export const registerSchema = z.object({
+  firstName: z
+    .string()
+    .trim()
+    .min(2, "First name must be at least 2 characters"),
+
+  lastName: z
+    .string()
+    .trim()
+    .min(2, "Last name must be at least 2 characters"),
+
+  username: z
+    .string()
+    .trim()
+    .min(3, "Username must be at least 3 characters"),
+
+  email: emailSchema,
+
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters"),
+
+  gender: z.enum(["Male", "Female"], {
+    message: "Please select a gender",
+  }),
+
+  role: z.enum(["Creator", "Investor"], {
+    message: "Please select a role",
+  }),
+});
 
 export const forgotPasswordSchema = z.object({
   email: emailSchema,
@@ -39,13 +58,7 @@ export const resetPasswordSchema = z
   .object({
     token: z.string().min(1, "Reset token is required"),
     password: z.string().min(8, "Password must be at least 8 characters"),
-    confirmPassword: z.string().min(1, "Confirm password is required"),
   })
-  .refine((values) => values.password === values.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  });
-
 export const confirmEmailSchema = z.object({
   token: z.string().min(1, "Confirmation token is required"),
 });
