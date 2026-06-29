@@ -1,4 +1,4 @@
-import { AuthLayout } from "../layout/auth-layout";
+import { OnboardingLayout } from "../../../shared/layout/onboarding-layout";
 import { AuthLottie } from "../components/auth-lottie";
 import { InvalidConfirmationLinkContent } from "../components/confirm-email/invalid-confirmation-link-content";
 import { ConfirmEmailContainer } from "./ConfirmEmailContainer";
@@ -15,7 +15,7 @@ export function ConfirmEmailPage({
 
     if (!userId || !token) {
         return (
-            <AuthLayout
+            <OnboardingLayout
                 form={<InvalidConfirmationLinkContent />}
                 illustration={<AuthLottie />}
             />

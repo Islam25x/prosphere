@@ -34,12 +34,10 @@ export const authService = {
   confirmEmail(
     payload: { userId: string; token: string },
   ): Promise<ApiResult<AuthenticationTokenDto>> {
-    return apiClient.put<
-      ApiResult<AuthenticationTokenDto>,
-      { userId: string; token: string }
-    >(
-      AUTH_ENDPOINTS.confirmEmail,
-      payload,
+    const { userId, token } = payload;
+
+    return apiClient.put<ApiResult<AuthenticationTokenDto>>(
+      `${AUTH_ENDPOINTS.confirmEmail}?userId=${encodeURIComponent(userId)}&token=${encodeURIComponent(token)}`
     );
   }
 };

@@ -5,7 +5,7 @@ type AuthLayoutProps = {
   illustration: ReactNode;
 };
 
-export function AuthLayout({ form, illustration }: AuthLayoutProps) {
+export function OnboardingLayout({ form, illustration }: AuthLayoutProps) {
   return (
     <div className="mx-auto grid min-h-screen grid-cols-1 gap-4 bg-background px-4 md:grid-cols-12 lg:grid-cols-12">
       <div className="flex items-center justify-center sm:col-span-12 md:col-span-6 lg:col-span-6">

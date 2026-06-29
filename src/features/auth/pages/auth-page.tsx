@@ -1,7 +1,7 @@
 import { AuthLottie } from "../components/auth-lottie";
 import { AuthSwitch } from "../components/auth-switch";
-import { AuthLayout } from "../layout/auth-layout";
+import { OnboardingLayout } from "../../../shared/layout/onboarding-layout";
 
 export function AuthPage() {
-    return <AuthLayout form={<AuthSwitch />} illustration={<AuthLottie />} />;
+    return <OnboardingLayout form={<AuthSwitch />} illustration={<AuthLottie />} />;
 }

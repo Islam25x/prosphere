@@ -4,8 +4,12 @@ import { useMutation } from "@tanstack/react-query";
 import { authService } from "../services/auth.service";
 import { setAuthSession } from "@/infrastructure/auth/auth-session";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/shared/routes";
 
 export function useLoginMutation() {
+  const router = useRouter();
+
   return useMutation({
     mutationFn: authService.login,
 
@@ -14,6 +18,7 @@ export function useLoginMutation() {
         accessToken: result.value!.token,
         refreshToken: result.value!.refreshToken,
       });
+      router.replace(ROUTES.verification.verification);
     },
 
     onError(error) {

@@ -6,7 +6,11 @@ export const ROUTES = {
         confirmEmail: "/confirm-email",
         resetPassword: "/reset-password",
     },
-
+    verification: {
+        verification: "/verification",
+        identityVerification: "/verification/identity",
+        pending: "/verification/pending",
+    },
     dashboard: "/dashboard",
 
     profile: "/profile",

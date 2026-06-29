@@ -15,9 +15,9 @@ export function decodeJwtSegment(
     );
 }
 
-export function decodeJwtPayload<T>(
+export function decodeJwtPayload(
     token: string,
-): T | null {
+): Record<string, unknown> | null {
     const payloadSegment =
         token.split(".")[1];
 
@@ -29,7 +29,7 @@ export function decodeJwtPayload<T>(
         const payload =
             decodeJwtSegment(payloadSegment);
 
-        return JSON.parse(payload) as T;
+        return JSON.parse(payload) as Record<string, unknown> | null;
     } catch {
         return null;
     }

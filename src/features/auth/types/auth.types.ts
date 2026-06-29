@@ -2,7 +2,15 @@ export type AuthSession = {
   accessToken: string;
   refreshToken: string;
   expiresAt?: Date;
+  user: CurrentUser;
 };
+export interface CurrentUser {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  exp: number;
+}
 export type LoginPayload = {
   email: string;
   password: string;

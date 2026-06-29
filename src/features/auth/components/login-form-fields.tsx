@@ -19,6 +19,7 @@ type LoginFormFieldsProps = {
 
 export function LoginFormFields({
   errors,
+  watch,
   onForgotPassword,
   register,
 }: LoginFormFieldsProps) {
